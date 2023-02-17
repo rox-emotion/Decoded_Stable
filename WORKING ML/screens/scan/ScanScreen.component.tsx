@@ -19,30 +19,34 @@ const App = ({navigation}) => {
   const [model, setModel] = useState<mobilenet.MobileNet>();
   const cameraRef = useRef<Camera>(null);
   const [imageURI, setImageURI] = useState('./');
-  var firstRender = useRef(null);
+  const [shouldTakePhoto, setShouldTakePhoto] = useState(false);
+  const [isCameraReady, setIsCameraReady] = useState(false);
+
 
   useEffect(() => {
     askForPermissions();
     load();
   }, []);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(()=> {
-  //     takePicture()
-  //   },10000)
-  // },[])
+  useEffect(() => {
+    if (shouldTakePhoto) {
+      takePicture();
+      setShouldTakePhoto(false);
+    }
+  }, [shouldTakePhoto]);
 
   const load = async () => {
     try {
       await tf.ready();
       const model = await mobilenet.load();
-      setModel(model)
+      setModel(model);
       setIsTfReady(true);
+      setShouldTakePhoto(true)
     } catch (err) {
       console.log(err);
     }
   };
-
+  
 
   const askForPermissions = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -52,7 +56,7 @@ const App = ({navigation}) => {
   const resizeImage = async (photoUri: string) => {
     const resizedImage = await ImageManipulator.manipulateAsync(
       photoUri,
-      [{ resize: { width: 300, height: 300 } }],
+      [{ resize: { width: 150, height: 150 } }],
       { compress: 0.6, format: ImageManipulator.SaveFormat.JPEG },
     );
     return resizedImage.uri;
@@ -60,9 +64,18 @@ const App = ({navigation}) => {
 
   const takePicture = async () => {
     console.error('am intrat')
+  
+    while(!isCameraReady){
+      console.log('preparing...')
+    }
+    if(isCameraReady){
+      console.error('ready to go')
+    }
     let photo = { uri: './' }
     if (cameraRef.current) {
-      photo = await cameraRef.current.takePictureAsync();
+      photo = await cameraRef.current.takePictureAsync({
+        skipProcessing: true
+      });
       setImageURI(photo.uri)
     }
 
@@ -81,6 +94,15 @@ const App = ({navigation}) => {
     const predictionMe = await model?.classify(imageTensorMe);
     console.error(predictionMe)
     if (predictionMe && predictionMe.length > 0) {
+      console.error(predictionMe[0].className)
+      if (predictionMe[0].className == 'pot, flowerpot'){
+          console.error("AVEM FLORI")
+          navigation.navigate('detail')
+      }
+      else {
+        console.error("NU-S FLORI")
+        takePicture()
+      }
       console.error(`${predictionMe[0].className} (${predictionMe[0].probability.toFixed(3)})`)
       setResult(
         `${predictionMe[0].className} (${predictionMe[0].probability.toFixed(3)})`
@@ -100,14 +122,12 @@ const App = ({navigation}) => {
         justifyContent: 'center',
       }}
     >
-      <Camera style={styles.camera} type={CameraType.back} ref={cameraRef}>
+      <Camera style={styles.camera} type={CameraType.back} ref={cameraRef}  onCameraReady={() => setIsCameraReady(true)}>
       </Camera>
       {
-        isTfReady
+        isTfReady && isCameraReady
         ? <View>
-          <TouchableOpacity style={styles.pula} onPress={takePicture}>
-          <Text style={styles.pula}>da cool</Text>
-          </TouchableOpacity>
+          <Text style={styles.pula}>loaded and ready to go</Text>
           </View>
         : null
       }
