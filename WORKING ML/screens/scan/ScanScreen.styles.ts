@@ -16,10 +16,6 @@ const styles = StyleSheet.create({
       padding: 10,
       borderRadius: 5,
     },
-    pula: {
-      fontSize:50,
-      marginTop:50
-    }
   });
   
 

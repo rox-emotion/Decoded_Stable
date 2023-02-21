@@ -8,14 +8,17 @@ import HomeScreen from './screens/home/HomeScreen.component';
 import DetailScreen from './screens/detail/DetailScreen.component';
 import AllScreen from './screens/all/AllScreen.component';
 import AboutScreen from './screens/about/AboutScreen.component';
+import { DefaultTheme} from '@react-navigation/native';
 
+const navTheme = DefaultTheme;
+navTheme.colors.background = '#FFFFFF';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={navTheme}>
       <Stack.Navigator  screenOptions={{headerShown: false}} >
         <Stack.Screen name="splash" component={SplashScreen}/>
         <Stack.Screen name="scan" component={ScanScreen} />

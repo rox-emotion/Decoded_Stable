@@ -4,16 +4,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-around',
-        margin: 24
+        justifyContent: 'center',
     },
-    tagline: {
-        textAlign: 'right'
-    },
-    logo: {
-        alignSelf: 'center'
+    tree:{
+        alignSelf: 'center',
+        width: '90%',
+        height: undefined,
+        aspectRatio: 0.94,
     }
-
 })
 
 export default styles;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ViewStyle } from 'react-native';
 import * as tf from '@tensorflow/tfjs';
 import { decodeJpeg } from '@tensorflow/tfjs-react-native';
 import * as mobilenet from '@tensorflow-models/mobilenet';
@@ -10,8 +10,9 @@ import * as ImageManipulator from 'expo-image-manipulator';
 import styles from './ScanScreen.styles';
 import { TouchableOpacity } from 'react-native';
 import '@tensorflow/tfjs-react-native/dist/platform_react_native'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const App = ({navigation}) => {
+const App = ({ navigation }) => {
 
   const [isTfReady, setIsTfReady] = useState(false);
   const [result, setResult] = useState('');
@@ -21,6 +22,7 @@ const App = ({navigation}) => {
   const [imageURI, setImageURI] = useState('./');
   const [shouldTakePhoto, setShouldTakePhoto] = useState(false);
   const [isCameraReady, setIsCameraReady] = useState(false);
+  const [picsTaken, setPicsTaken] = useState(0);
 
 
   useEffect(() => {
@@ -46,7 +48,7 @@ const App = ({navigation}) => {
       console.log(err);
     }
   };
-  
+
 
   const askForPermissions = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -63,24 +65,24 @@ const App = ({navigation}) => {
   };
 
   const takePicture = async () => {
-    console.error('am intrat')
-  
-    while(!isCameraReady){
+    try{
+    setPicsTaken(picsTaken + 1)
+    console.error(picsTaken)
+    while (!isCameraReady) {
       console.log('preparing...')
     }
-    if(isCameraReady){
+    if (isCameraReady) {
       console.error('ready to go')
     }
     let photo = { uri: './' }
     if (cameraRef.current) {
+      console.error('acuma incepe sa se faca poza')
       photo = await cameraRef.current.takePictureAsync({
         skipProcessing: true
       });
+      console.error('gata poza')
       setImageURI(photo.uri)
     }
-
-    console.error(model)
-    console.error('am facut poza')
 
     const imageDataBase64 = await FileSystem.readAsStringAsync(
       await resizeImage(photo.uri),
@@ -95,9 +97,9 @@ const App = ({navigation}) => {
     console.error(predictionMe)
     if (predictionMe && predictionMe.length > 0) {
       console.error(predictionMe[0].className)
-      if (predictionMe[0].className == 'pot, flowerpot'){
-          console.error("AVEM FLORI")
-          navigation.navigate('detail')
+      if (predictionMe[0].className == 'computer keyboard, keypad' || predictionMe[0].className == 'notebook, notebook computer') {
+        console.error("AVEM FLORI")
+        navigation.navigate('detail')
       }
       else {
         console.error("NU-S FLORI")
@@ -110,6 +112,14 @@ const App = ({navigation}) => {
     }
     console.error('gata fra')
   }
+catch (err) {
+  console.log(err);
+}
+  }
+
+  const handleCameraReady = () => {
+    setIsCameraReady(true);
+  };
 
 
   return (
@@ -122,22 +132,54 @@ const App = ({navigation}) => {
         justifyContent: 'center',
       }}
     >
-      <Camera style={styles.camera} type={CameraType.back} ref={cameraRef}  onCameraReady={() => setIsCameraReady(true)}>
+      <Camera
+      style={styles.camera}
+      type={CameraType.back} ref={cameraRef}  onCameraReady={() => setIsCameraReady(true)}>
       </Camera>
-      {
-        isTfReady && isCameraReady
-        ? <View>
-          <Text style={styles.pula}>loaded and ready to go</Text>
-          </View>
-        : null
-      }
+      
       <Image
         source={{ uri: imageURI }}
         style={{ width: 200, height: 200 }}
       />
+<TouchableOpacity onPress={() => {navigation.navigate('detail')}}>
+        <Text style={{marginTop:100}}>Move over automatically</Text>
+      </TouchableOpacity>
       {result !== '' && <Text>{result}</Text>}
     </View>
   );
+
+  // return (
+  //   <View style={{ flex: 1 }}>
+  //     <View style={{ flex: 1 }}>
+  //     {isCameraReady ? (
+  //       <Camera style={{ flex: 1 }} onCameraReady={handleCameraReady} />
+  //     ) : (
+  //       <Image
+  //         source={require('./../../assets/icons/scan.png')}
+  //         style={{ flex: 1, resizeMode: 'cover', display: 'none' }}
+  //       />
+  //     )}
+  //     {!isCameraReady ? (
+  //       <Image
+  //       source={require('./../../assets/icons/scan.png')}
+  //         style={{ flex: 1, resizeMode: 'cover' }}
+  //       />
+  //     ) : null}
+  //   </View>
+  //   </View>
+  // );
+  // return (
+  //   <View style={{ flex: 1 }}>
+  //     <Camera
+  //       style={{ flex: 1, display: isCameraReady ? 'flex' : 'none' }}
+  //       onCameraReady={handleCameraReady}
+  //     />
+  //     <Image
+  //       source={require('./../../assets/icons/scan.png')}
+  //       style={{ flex: 1, resizeMode: 'cover', display: isCameraReady ? 'none' : 'flex' }}
+  //     />
+  //   </View>
+  // );
 };
 
 export default App;
