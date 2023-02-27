@@ -4,6 +4,9 @@ const styles= StyleSheet.create({
     container: {
         margin: 16,
     },
+    scrollContainer:{
+        height:'90%'
+    },
     title: {
         fontSize: 22,
         alignSelf: 'center'

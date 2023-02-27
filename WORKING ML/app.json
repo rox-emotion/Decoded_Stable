@@ -9,7 +9,12 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "org.name.posenet"
+      "bundleIdentifier": "org.name.posenet",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
     }
   }
 }

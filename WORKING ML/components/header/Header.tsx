@@ -1,32 +1,36 @@
 import React from "react";
-import { Image, View, TouchableOpacity} from "react-native";
+import { Image, View, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import styles from "./Header.style";
 
-const Header = (props) => {
+const Header = ({hasMenu}) => {
+    const menu = hasMenu;
     const navigation = useNavigation();
-    const backArrow = props.hasBackArrow;
-    const menu = !backArrow
     return (
         <View style={styles.container}>
+            <TouchableOpacity onPress={() => { navigation.goBack() }}>
+                <Image
+                    source={require('../../assets/icons/back_arrow.png')}
+                    style={{ height: 50, width: 50 }}
+
+                />
+            </TouchableOpacity>
             {
-                backArrow
-                    ? <TouchableOpacity onPress={() => { navigation.goBack() }}>
-                        <Image
-                            source={require('../../assets/icons/back_arrow.png')}
-                        />
-                    </TouchableOpacity>
-                    : <TouchableOpacity onPress={() => { navigation.navigate('all') }}>
+                menu
+                    ? <TouchableOpacity onPress={() => { navigation.navigate('All') }}>
                         <Image
                             source={require('../../assets/icons/menu.png')}
+                            style={{ height: 45, width: 45 }}
+
+                        />
+                    </TouchableOpacity>
+                    : <TouchableOpacity onPress={() => { navigation.navigate('About') }}>
+                        <Image
+                            source={require('../../assets/icons/icon.png')}
+                            style={{ height: 50, width: 50 }}
                         />
                     </TouchableOpacity>
             }
-            <TouchableOpacity onPress={() => {navigation.navigate('about')}}>
-                <Image
-                    source={require('../../assets/icons/icon.png')}
-                />
-            </TouchableOpacity>
 
         </View>
     )

@@ -1,113 +1,222 @@
 import React from "react";
-import { SafeAreaView, ScrollView, Text, View, Image, TouchableOpacity } from 'react-native';
-import styles from './DetailScreen.styles'
-import { useRef, useState } from "react";
+import { View, Button, Text, SafeAreaView, Platform, Animated, Image, ScrollView } from 'react-native';
+import { useEffect, useState, useRef } from "react";
+import { Audio } from 'expo-av';
+import Svg, { G, Circle, Rect } from 'react-native-svg';
+import { requestPermissionsAsync } from "expo-av/build/Audio";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import styles from "./DetailScreen.styles";
 import Header from "../../components/header/Header";
+import { useNavigation } from "@react-navigation/native";
 
-const DetailScreen = () => {
+const CorrectDetailScreen = ({ navigation }) => {
 
-    const scrollRef = useRef();
-    const [isScrolled, setIsScrolled] = useState(false);
+
+    const [sound, setSound] = useState();
+    const [percetange, setPercentage] = useState(0)
+    const [passed, setPassed] = useState(0)
+    const [isPaused, setIsPaused] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(true);
+
+    const playSound = async () => {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync(require('./../../assets/audio/001.ios.m4a'), { shouldPlay: true });
+        setSound(sound)
+        console.log('Playing Sound');
+        await sound.playAsync();
+        // sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
+    }
+
+    async function onPlaybackStatusUpdate(status: any) {
+        if (status.didJustFinish) {
+            await sound.unloadAsync();
+        }
+    }
+
+    async function stopSound() {
+        try {
+            await sound.stopAsync();
+            await sound.unloadAsync();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const enableAudio = async () => {
+        await Audio.setAudioModeAsync({
+            playsInSilentModeIOS: true,
+            staysActiveInBackground: false,
+            // shouldDuckAndroid: false,
+        })
+    }
+
+    const toggleSound = async () => {
+        if (sound) {
+            const status = await sound.getStatusAsync();
+            if (status.isPlaying === true) {
+                await sound.pauseAsync()
+                setIsPaused(true)
+            }
+            else {
+                await sound.playAsync()
+                setIsPaused(false)
+            }
+        }
+    }
+
+    const calculatePosition = async () => {
+        const status = await sound.getStatusAsync();
+        if (status.isPlaying) {
+            const progress = status.positionMillis / status.durationMillis;
+            const percentage = Math.floor(progress * 100);
+            console.log(`Played ${percentage}% of the audio`);
+            setPercentage(percentage)
+        }
+    }
 
     const scrollDown = () => {
-        // scrollRef.current?.scrollTo({
-        //     y: 0,
-        //     animated: true,
-        // });
-        setIsScrolled(true)
-        scrollRef.current?.scrollToEnd({ animated: true })
 
+        setIsScrolled(false)
     }
 
     const scrollUp = () => {
-        setIsScrolled(false)
-        scrollRef.current?.scrollTo({
-            y: 0,
-            animated: true,
-        });
+        setIsScrolled(true)
     }
+
+    useEffect(() => {
+        if (Platform.OS === 'ios') {
+            enableAudio()
+        }
+        playSound()
+
+        // return (() => {
+        //     stopSound()
+        // })
+
+    }, [])
+
+    // useEffect(() => {
+    //     const timer = setInterval(() => {
+    //         calculatePosition()
+    //     }, 1000)
+
+    //     return (() => {
+    //         clearInterval(timer)
+    //     })
+    // }, [sound])
+
+    // useEffect(() => {
+    //     return sound
+    //         ? () => {
+    //             console.log('Unloading Sound');
+    //             sound.unloadAsync();
+    //         }
+    //         : undefined;
+    // }, [sound]);
+
+
+
+
+    const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+    const radius = 55;
+    const strokeWidth = 20;
+    const duration = 500;
+    const color = '#3FA535';
+    const inactiveColor = '#EBE9E4'
+    const delay = 0;
+    const max = 100;
+    const halfCircle = radius + strokeWidth;
+    const circleCircumference = 2 * Math.PI * radius;
+    const circleRef = React.useRef();
+    const strokeDashoffset = circleCircumference - (circleCircumference * percetange) / 100;
+
 
     return (
         <SafeAreaView>
+            <Header hasMenu={false} />
+            {
+                isScrolled
+                    ? (
+                        <View style={styles.container}>
+                            <Image source={require('./../../assets/icons/placeholder.png')} style={{ height: 400, width: 300 }} />
+                            <Text style={styles.title}>Full Name</Text>
+                            <Text style={styles.title}>Artist and Writer</Text>
+                            <Text style={styles.title}>02_1994</Text>
+                            <View style={styles.player}>
+                                <TouchableOpacity
+                                // onPress={toggleSound}
+                                >
+                                    <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
+                                        <G rotation='-90' origin={`${halfCircle}, ${halfCircle}`}>
+                                            <Circle cy='50%' cx='50%' stroke={inactiveColor} strokeWidth={strokeWidth} r={radius} fill='transparent' />
+                                            {
+                                                isPaused
+                                                    ? <Image source={require('./../../assets/icons/pause.png')} style={{ width: 25, height: 30, alignSelf: 'center', marginTop: '35%' }} />
 
-            <Header hasBackArrow={false} />
-            <View style={styles.container}>
-                {
-                    isScrolled
-                        ? null
-                        : <Image source={require('./../../assets/photos/409815.jpg')} style={{ height: 400, width: 300 }} />
-                }
-                <Text style={styles.title}>Full Name</Text>
-                <ScrollView ref={scrollRef}>
-                    <TouchableOpacity onPress={scrollDown}>
-                        <Image source={require('./../../assets/icons/down_arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
-                    </TouchableOpacity>
-                    <Text style={styles.smallText}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada arcu id arcu rutrum molestie. Donec suscipit vestibulum est sit amet imperdiet. Morbi non venenatis massa, a dictum sapien. Integer volutpat tempus interdum. In nec venenatis odio. Duis vitae ultrices tortor, in tempus nisl. Fusce vel urna finibus, vulputate ante eu, viverra sapien. Maecenas finibus, dolor quis maximus aliquet, quam orci auctor nunc, sed tincidunt leo nibh vitae lacus. Donec rutrum dolor ac aliquam gravida.
+                                                    : null
+                                            }
+                                            <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
 
-                        Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.
-                        Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.
-
-                    </Text>
-
-                    <TouchableOpacity onPress={scrollUp}>
-                        <Image source={require('./../../assets/icons/up_arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
-                    </TouchableOpacity>
-                    {/* <Image source={require('./../../assets/icons/info.png')} /> */}
-
-                    {/* AICI PLAYER */}
-                    {/* <View>
-                        <ProgressBar
-                            progress={progress.position}
-                            buffered={progress.buffered}
-                        />
-                    </View> */}
-                    {/* <MyPlayerBar/>
-
-                    <Text style={styles.smallText}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada arcu id arcu rutrum molestie. Donec suscipit vestibulum est sit amet imperdiet. Morbi non venenatis massa, a dictum sapien. Integer volutpat tempus interdum. In nec venenatis odio. Duis vitae ultrices tortor, in tempus nisl. Fusce vel urna finibus, vulputate ante eu, viverra sapien. Maecenas finibus, dolor quis maximus aliquet, quam orci auctor nunc, sed tincidunt leo nibh vitae lacus. Donec rutrum dolor ac aliquam gravida.
-
-                        Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.
-
-                    </Text>
-
-                    {/* <TouchableOpacity onPress={onPressTouch}>
-                        <Image source={require('./../../assets/icons/arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
-                    </TouchableOpacity> */}
-
-                    {/* <Modal
-                        animationType="none"
-                        transparent={true}
-                        visible={showModal}
-                        onRequestClose={() => {
-                            Alert.alert("Modal has been closed.");
-                            setShowModal(!showModal);
-                        }}
-                    >
-                        <View style={styles.modal}>
-                            <Text>Thank you for your interest in the DeCoded project. Would you be interested in purchasing the Decoded book?</Text>
-                            <View style={styles.buttons}>
-                                <Button
-                                    title="Link to Shop"
-                                />
-                                <Button
-                                    title="No Thanks"
-                                    onPress={() => { setShowModal(!showModal) }}
-                                />
+                                        </G>
+                                    </Svg>
+                                </TouchableOpacity>
                             </View>
+                            <TouchableOpacity onPress={scrollDown}>
+                                <Image source={require('./../../assets/icons/down_arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
+                            </TouchableOpacity>
+
                         </View>
-                    </Modal> */}
+                    )
+                    : (
+
+                        <View style={styles.containerScroll}>
+                            <Text style={styles.title}>Full Name</Text>
+                            <Text style={styles.title}>Artist and Writer</Text>
+                            <Text style={styles.title}>02_1994</Text>
+                            <View style={styles.player}>
+                                <TouchableOpacity
+                                // onPress={toggleSound}
+                                >
+                                    <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
+                                        <G rotation='-90' origin={`${halfCircle}, ${halfCircle}`}>
+                                            <Circle cy='50%' cx='50%' stroke={inactiveColor} strokeWidth={strokeWidth} r={radius} fill='transparent' />
+                                            {
+                                                isPaused
+                                                    ? <Image source={require('./../../assets/icons/pause.png')} style={{ width: 25, height: 30, alignSelf: 'center', marginTop: '35%' }} />
+
+                                                    : null
+                                            }
+                                            <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
+
+                                        </G>
+                                    </Svg>
+                                </TouchableOpacity>
+                            </View>
+                            <ScrollView style={{ height: '80%' }}>
+                                <Text style={styles.smallText}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada arcu id arcu rutrum molestie. Donec suscipit vestibulum est sit amet imperdiet. Morbi non venenatis massa, a dictum sapien. Integer volutpat tempus interdum. In nec venenatis odio. Duis vitae ultrices tortor, in tempus nisl. Fusce vel urna finibus, vulputate ante eu, viverra sapien. Maecenas finibus, dolor quis maximus aliquet, quam orci auctor nunc, sed tincidunt leo nibh vitae lacus. Donec rutrum dolor ac aliquam gravida.
+
+                                    Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.
+                                    Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.
+
+                                </Text>
+
+                                <TouchableOpacity
+                                    onPress={scrollUp}
+                                >
+                                    <Image source={require('./../../assets/icons/up_arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
+                                </TouchableOpacity>
+
+                            </ScrollView>
+                        </View>
 
 
-                    {/* {showModal
-                        ? <Modal />
-                        : null} */}
 
+                    )
+            }
 
-                </ScrollView>
-            </View>
-        </SafeAreaView >
+        </SafeAreaView>
     )
 }
 
-export default DetailScreen;
+export default CorrectDetailScreen;

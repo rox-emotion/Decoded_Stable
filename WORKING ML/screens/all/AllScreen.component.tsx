@@ -14,11 +14,11 @@ const AllScreen = () => {
           animated: true,
         });
       }
-    const [modalVisible, setModalVisible] = useState(true)
+      
     return (
         <SafeAreaView>
-            <Header hasBackArrow={true} />
-            <ScrollView ref={scrollRef}>
+            <Header hasMenu={false}/>
+            <ScrollView ref={scrollRef} style={styles.container}>
                 <View style={styles.container}>
                     <View style={styles.pictureRow}>
                     <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>

@@ -3,7 +3,8 @@ const styles = StyleSheet.create({
     container:{
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginRight:12
     }
 })
 

@@ -2,7 +2,8 @@ import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 22
+        fontSize: 20,
+        color: '#3FA535'
     },
     smallText: {
         fontSize: 16
@@ -27,6 +28,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
+    },
+
+    player: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignSelf: 'center',
+    },
+    containerScroll: {
+        margin: 16,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '90%',
     }
 
 })

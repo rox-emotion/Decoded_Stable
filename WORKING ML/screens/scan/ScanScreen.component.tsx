@@ -10,9 +10,10 @@ import * as ImageManipulator from 'expo-image-manipulator';
 import styles from './ScanScreen.styles';
 import { TouchableOpacity } from 'react-native';
 import '@tensorflow/tfjs-react-native/dist/platform_react_native'
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
-const App = ({ navigation }) => {
+
+const ScanScreen = () => {
 
   const [isTfReady, setIsTfReady] = useState(false);
   const [result, setResult] = useState('');
@@ -23,19 +24,25 @@ const App = ({ navigation }) => {
   const [shouldTakePhoto, setShouldTakePhoto] = useState(false);
   const [isCameraReady, setIsCameraReady] = useState(false);
   const [picsTaken, setPicsTaken] = useState(0);
-
-
-  useEffect(() => {
-    askForPermissions();
-    load();
-  }, []);
+  const navigation = useNavigation()
 
   useEffect(() => {
-    if (shouldTakePhoto) {
-      takePicture();
-      setShouldTakePhoto(false);
-    }
-  }, [shouldTakePhoto]);
+    const timer = setTimeout(() => {
+      navigation.navigate("Detail")
+    }, 3000)
+  }, [])
+
+  // useEffect(() => {
+  //   askForPermissions();
+  //   load();
+  // }, []);
+
+  // useEffect(() => {
+  //   if (shouldTakePhoto) {
+  //     takePicture();
+  //     setShouldTakePhoto(false);
+  //   }
+  // }, [shouldTakePhoto]);
 
   const load = async () => {
     try {
@@ -65,56 +72,56 @@ const App = ({ navigation }) => {
   };
 
   const takePicture = async () => {
-    try{
-    setPicsTaken(picsTaken + 1)
-    console.error(picsTaken)
-    while (!isCameraReady) {
-      console.log('preparing...')
-    }
-    if (isCameraReady) {
-      console.error('ready to go')
-    }
-    let photo = { uri: './' }
-    if (cameraRef.current) {
-      console.error('acuma incepe sa se faca poza')
-      photo = await cameraRef.current.takePictureAsync({
-        skipProcessing: true
-      });
-      console.error('gata poza')
-      setImageURI(photo.uri)
-    }
-
-    const imageDataBase64 = await FileSystem.readAsStringAsync(
-      await resizeImage(photo.uri),
-      {
-        encoding: FileSystem.EncodingType.Base64,
-      },
-    );
-
-    const imageData8 = new Uint8Array(Buffer.from(imageDataBase64, 'base64'));
-    const imageTensorMe = decodeJpeg(imageData8);
-    const predictionMe = await model?.classify(imageTensorMe);
-    console.error(predictionMe)
-    if (predictionMe && predictionMe.length > 0) {
-      console.error(predictionMe[0].className)
-      if (predictionMe[0].className == 'computer keyboard, keypad' || predictionMe[0].className == 'notebook, notebook computer') {
-        console.error("AVEM FLORI")
-        navigation.navigate('detail')
+    try {
+      setPicsTaken(picsTaken + 1)
+      console.error(picsTaken)
+      while (!isCameraReady) {
+        console.log('preparing...')
       }
-      else {
-        console.error("NU-S FLORI")
-        takePicture()
+      if (isCameraReady) {
+        console.error('ready to go')
       }
-      console.error(`${predictionMe[0].className} (${predictionMe[0].probability.toFixed(3)})`)
-      setResult(
-        `${predictionMe[0].className} (${predictionMe[0].probability.toFixed(3)})`
+      let photo = { uri: './' }
+      if (cameraRef.current) {
+        console.error('acuma incepe sa se faca poza')
+        photo = await cameraRef.current.takePictureAsync({
+          skipProcessing: true
+        });
+        console.error('gata poza')
+        setImageURI(photo.uri)
+      }
+
+      const imageDataBase64 = await FileSystem.readAsStringAsync(
+        await resizeImage(photo.uri),
+        {
+          encoding: FileSystem.EncodingType.Base64,
+        },
       );
+
+      const imageData8 = new Uint8Array(Buffer.from(imageDataBase64, 'base64'));
+      const imageTensorMe = decodeJpeg(imageData8);
+      const predictionMe = await model?.classify(imageTensorMe);
+      console.error(predictionMe)
+      if (predictionMe && predictionMe.length > 0) {
+        console.error(predictionMe[0].className)
+        if (predictionMe[0].className == 'computer keyboard, keypad' || predictionMe[0].className == 'notebook, notebook computer') {
+          console.error("AVEM FLORI")
+          navigation.navigate('Detail')
+        }
+        else {
+          console.error("NU-S FLORI")
+          takePicture()
+        }
+        console.error(`${predictionMe[0].className} (${predictionMe[0].probability.toFixed(3)})`)
+        setResult(
+          `${predictionMe[0].className} (${predictionMe[0].probability.toFixed(3)})`
+        );
+      }
+      console.error('gata fra')
     }
-    console.error('gata fra')
-  }
-catch (err) {
-  console.log(err);
-}
+    catch (err) {
+      console.log(err);
+    }
   }
 
   const handleCameraReady = () => {
@@ -133,56 +140,24 @@ catch (err) {
       }}
     >
       <Camera
-      style={styles.camera}
-      type={CameraType.back} ref={cameraRef}  onCameraReady={() => setIsCameraReady(true)}>
+        style={styles.camera}
+        type={CameraType.back} ref={cameraRef} onCameraReady={() => setIsCameraReady(true)}>
       </Camera>
-      
+
       <Image
         source={{ uri: imageURI }}
         style={{ width: 200, height: 200 }}
       />
-<TouchableOpacity onPress={() => {navigation.navigate('detail')}}>
-        <Text style={{marginTop:100}}>Move over automatically</Text>
-      </TouchableOpacity>
+      {/* <TouchableOpacity onPress={() => { navigation.navigate('detail') }}>
+        <Text style={{ marginTop: 100, fontSize: 46 }}>Move over automatically</Text>
+      </TouchableOpacity> */}
       {result !== '' && <Text>{result}</Text>}
     </View>
   );
 
-  // return (
-  //   <View style={{ flex: 1 }}>
-  //     <View style={{ flex: 1 }}>
-  //     {isCameraReady ? (
-  //       <Camera style={{ flex: 1 }} onCameraReady={handleCameraReady} />
-  //     ) : (
-  //       <Image
-  //         source={require('./../../assets/icons/scan.png')}
-  //         style={{ flex: 1, resizeMode: 'cover', display: 'none' }}
-  //       />
-  //     )}
-  //     {!isCameraReady ? (
-  //       <Image
-  //       source={require('./../../assets/icons/scan.png')}
-  //         style={{ flex: 1, resizeMode: 'cover' }}
-  //       />
-  //     ) : null}
-  //   </View>
-  //   </View>
-  // );
-  // return (
-  //   <View style={{ flex: 1 }}>
-  //     <Camera
-  //       style={{ flex: 1, display: isCameraReady ? 'flex' : 'none' }}
-  //       onCameraReady={handleCameraReady}
-  //     />
-  //     <Image
-  //       source={require('./../../assets/icons/scan.png')}
-  //       style={{ flex: 1, resizeMode: 'cover', display: isCameraReady ? 'none' : 'flex' }}
-  //     />
-  //   </View>
-  // );
 };
 
-export default App;
+export default ScanScreen;
 
 
 
