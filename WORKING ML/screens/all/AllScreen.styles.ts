@@ -2,14 +2,15 @@ import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
-        margin: 16,
+        margin: 28,
         flexDirection: 'column',
-        height: '90%'
+        height: '90%',
     },
     pictureRow: {
+        display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center',       
     }
 })
 

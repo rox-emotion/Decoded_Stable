@@ -3,16 +3,19 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
     title: {
         fontSize: 20,
-        color: '#3FA535'
+        color: '#3FA535',
+
     },
     smallText: {
         fontSize: 16
     },
     container: {
-        margin: 16,
+        margin: 28,
+        marginBottom: 0,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+       
     },
     modal: {
         padding: 16,

@@ -11,7 +11,7 @@ const Header = ({hasMenu}) => {
             <TouchableOpacity onPress={() => { navigation.goBack() }}>
                 <Image
                     source={require('../../assets/icons/back_arrow.png')}
-                    style={{ height: 50, width: 50 }}
+                    style={{ height: 38, width: 19 }}
 
                 />
             </TouchableOpacity>
@@ -20,7 +20,7 @@ const Header = ({hasMenu}) => {
                     ? <TouchableOpacity onPress={() => { navigation.navigate('All') }}>
                         <Image
                             source={require('../../assets/icons/menu.png')}
-                            style={{ height: 45, width: 45 }}
+                            style={{ height: 45, width: 40 }}
 
                         />
                     </TouchableOpacity>

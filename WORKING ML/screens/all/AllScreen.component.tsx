@@ -4,74 +4,73 @@ import { SafeAreaView, Text, Modal, ScrollView, Image, View, TouchableOpacity } 
 import Header from "../../components/header/Header";
 import { useState } from "react";
 import styles from "./AllScreen.styles";
+import { useNavigation } from "@react-navigation/native";
 
 const AllScreen = () => {
     const scrollRef = useRef();
-
-    const onPressTouch = () => {
-        scrollRef.current?.scrollTo({
-          y: 0,
-          animated: true,
-        });
-      }
+    const navigation = useNavigation()
+    const navigateToDetail = () => {
+        navigation.navigate('Detail')
+    }
       
+    //AICI O SA FIE UN FLATLIST CARE O SA RANDEZE UN <TouchableOpacity onPress={navigateToDetail(item.id)}><Image source={require()} style={...}</TouchableOpacity>
     return (
         <SafeAreaView>
             <Header hasMenu={false}/>
             <ScrollView ref={scrollRef} style={styles.container}>
                 <View style={styles.container}>
                     <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}} />
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
+                    <TouchableOpacity onPress={navigateToDetail}>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    </TouchableOpacity>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}} />
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
                     </View>
                     <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
                     </View>
                     <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
                     </View>
                     <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
                     </View>
                     <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
                     </View>
                     <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
                     </View>
                     <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
                     </View>
                     <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:100, width:100}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
+                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
                     </View>
                 </View>
-                <TouchableOpacity onPress={onPressTouch}>
-                <Image source={require('./../../assets/icons/up_arrow.png')} style={{height:50, width:50, alignSelf:'center'}} />
-            </TouchableOpacity>
+                
             </ScrollView>
            
         </SafeAreaView>

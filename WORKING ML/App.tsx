@@ -8,7 +8,8 @@ import AllScreen from './screens/all/AllScreen.component';
 import AboutScreen from './screens/about/AboutScreen.component';
 import ScanScreen from './screens/scan/ScanScreen.component';
 import DetailScreen from './screens/detail/DetailScreen.component';
-
+import { loadFonts } from './Fonts';
+import { useEffect } from 'react';
 const Stack = createNativeStackNavigator();
 
 const navTheme = DefaultTheme;
@@ -18,7 +19,9 @@ const App = () => {
 
   return (
     <NavigationContainer theme={navTheme}>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{
+        headerShown: false
+      }}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Scan" component={ScanScreen} />

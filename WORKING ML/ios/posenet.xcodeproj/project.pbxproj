@@ -14,6 +14,9 @@
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		96905EF65AED1B983A6B3ABC /* libPods-posenet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-posenet.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		487EF58D4ECF4F50BE5BA99C /* CALIFB.TTF in Resources */ = {isa = PBXBuildFile; fileRef = ED10F91F55304A48949B0603 /* CALIFB.TTF */; };
+		766B90417C844481A0EFA3E8 /* CALIFI.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 9B14FE981E8E47DC850946B4 /* CALIFI.TTF */; };
+		9CE8F1839F3E4BD0ABB16EF1 /* CALIFR.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 49043EDAE76040D99F4096C4 /* CALIFR.TTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		ED10F91F55304A48949B0603 /* CALIFB.TTF */ = {isa = PBXFileReference; name = "CALIFB.TTF"; path = "../assets/fonts/CALIFB.TTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9B14FE981E8E47DC850946B4 /* CALIFI.TTF */ = {isa = PBXFileReference; name = "CALIFI.TTF"; path = "../assets/fonts/CALIFI.TTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		49043EDAE76040D99F4096C4 /* CALIFR.TTF */ = {isa = PBXFileReference; name = "CALIFR.TTF"; path = "../assets/fonts/CALIFR.TTF"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +93,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
+				3DF6609DA1AA4732ACAA1ADC /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -118,6 +125,17 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		3DF6609DA1AA4732ACAA1ADC /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				ED10F91F55304A48949B0603 /* CALIFB.TTF */,
+				9B14FE981E8E47DC850946B4 /* CALIFI.TTF */,
+				49043EDAE76040D99F4096C4 /* CALIFR.TTF */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -183,6 +201,9 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+				487EF58D4ECF4F50BE5BA99C /* CALIFB.TTF in Resources */,
+				766B90417C844481A0EFA3E8 /* CALIFI.TTF in Resources */,
+				9CE8F1839F3E4BD0ABB16EF1 /* CALIFR.TTF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

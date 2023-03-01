@@ -2,14 +2,14 @@ import {StyleSheet} from 'react-native';
 
 const styles= StyleSheet.create({
     container: {
-        margin: 16,
+        margin: 28,
     },
     scrollContainer:{
         height:'90%'
     },
     title: {
         fontSize: 22,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     smallText: {
         fontSize: 16

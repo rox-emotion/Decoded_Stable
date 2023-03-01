@@ -7,10 +7,11 @@ import { requestPermissionsAsync } from "expo-av/build/Audio";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import styles from "./DetailScreen.styles";
 import Header from "../../components/header/Header";
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused } from '@react-navigation/native';
 
-const CorrectDetailScreen = ({ navigation }) => {
+const DetailScreen = () => {
 
+    const isFocused = useIsFocused();
 
     const [sound, setSound] = useState();
     const [percetange, setPercentage] = useState(0)
@@ -24,22 +25,6 @@ const CorrectDetailScreen = ({ navigation }) => {
         setSound(sound)
         console.log('Playing Sound');
         await sound.playAsync();
-        // sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
-    }
-
-    async function onPlaybackStatusUpdate(status: any) {
-        if (status.didJustFinish) {
-            await sound.unloadAsync();
-        }
-    }
-
-    async function stopSound() {
-        try {
-            await sound.stopAsync();
-            await sound.unloadAsync();
-        } catch (error) {
-            console.log(error);
-        }
     }
 
     const enableAudio = async () => {
@@ -75,7 +60,6 @@ const CorrectDetailScreen = ({ navigation }) => {
     }
 
     const scrollDown = () => {
-
         setIsScrolled(false)
     }
 
@@ -85,35 +69,36 @@ const CorrectDetailScreen = ({ navigation }) => {
 
     useEffect(() => {
         if (Platform.OS === 'ios') {
-            enableAudio()
+            enableAudio();
         }
-        playSound()
 
-        // return (() => {
-        //     stopSound()
-        // })
+        if (isFocused) {
+            playSound();
+        }
+        else{
+            sound.stopAsync();
+        }
 
-    }, [])
+        // Return a cleanup function to stop the sound when the component unmounts
+        return () => {
+            console.log('Stopping Sound');
+            if (sound !== undefined) {
+                sound.stopAsync();
+            }
+        };
+    }, [isFocused]);
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         calculatePosition()
-    //     }, 1000)
 
-    //     return (() => {
-    //         clearInterval(timer)
-    //     })
-    // }, [sound])
+    useEffect(() => {
+        const timer = setInterval(() => {
+            calculatePosition()
+        }, 1000)
 
-    // useEffect(() => {
-    //     return sound
-    //         ? () => {
-    //             console.log('Unloading Sound');
-    //             sound.unloadAsync();
-    //         }
-    //         : undefined;
-    // }, [sound]);
+        return (() => {
+            clearInterval(timer)
+        })
 
+    }, [sound])
 
 
 
@@ -138,33 +123,35 @@ const CorrectDetailScreen = ({ navigation }) => {
                 isScrolled
                     ? (
                         <View style={styles.container}>
-                            <Image source={require('./../../assets/icons/placeholder.png')} style={{ height: 400, width: 300 }} />
-                            <Text style={styles.title}>Full Name</Text>
-                            <Text style={styles.title}>Artist and Writer</Text>
-                            <Text style={styles.title}>02_1994</Text>
-                            <View style={styles.player}>
-                                <TouchableOpacity
-                                // onPress={toggleSound}
-                                >
-                                    <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
-                                        <G rotation='-90' origin={`${halfCircle}, ${halfCircle}`}>
-                                            <Circle cy='50%' cx='50%' stroke={inactiveColor} strokeWidth={strokeWidth} r={radius} fill='transparent' />
-                                            {
-                                                isPaused
-                                                    ? <Image source={require('./../../assets/icons/pause.png')} style={{ width: 25, height: 30, alignSelf: 'center', marginTop: '35%' }} />
+                            <Image source={require('./../../assets/icons/placeholder.png')} style={{ height: 400, width: 300, marginBottom: 23 }} />
+                            <View style={{ justifyContent: 'space-evenly' }}>
 
-                                                    : null
-                                            }
-                                            <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
+                                <Text style={styles.title}>Full Name</Text>
+                                <Text style={styles.title}>Artist and Writer</Text>
+                                <Text style={styles.title}>02_1994</Text>
+                                <View style={styles.player}>
+                                    <TouchableOpacity
+                                        onPress={toggleSound}
+                                    >
+                                        <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
+                                            <G rotation='-90' origin={`${halfCircle}, ${halfCircle}`}>
+                                                <Circle cy='50%' cx='50%' stroke={inactiveColor} strokeWidth={strokeWidth} r={radius} fill='transparent' />
+                                                {
+                                                    isPaused
+                                                        ? <Image source={require('./../../assets/icons/pause.png')} style={{ width: 25, height: 30, alignSelf: 'center', marginTop: '35%' }} />
 
-                                        </G>
-                                    </Svg>
+                                                        : null
+                                                }
+                                                <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
+
+                                            </G>
+                                        </Svg>
+                                    </TouchableOpacity>
+                                </View>
+                                <TouchableOpacity onPress={scrollDown}>
+                                    <Image source={require('./../../assets/icons/down_arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
                                 </TouchableOpacity>
                             </View>
-                            <TouchableOpacity onPress={scrollDown}>
-                                <Image source={require('./../../assets/icons/down_arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
-                            </TouchableOpacity>
-
                         </View>
                     )
                     : (
@@ -173,9 +160,9 @@ const CorrectDetailScreen = ({ navigation }) => {
                             <Text style={styles.title}>Full Name</Text>
                             <Text style={styles.title}>Artist and Writer</Text>
                             <Text style={styles.title}>02_1994</Text>
-                            <View style={styles.player}>
+                            <View style={[styles.player, { marginBottom: 14 }]}>
                                 <TouchableOpacity
-                                // onPress={toggleSound}
+                                    onPress={toggleSound}
                                 >
                                     <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
                                         <G rotation='-90' origin={`${halfCircle}, ${halfCircle}`}>
@@ -219,4 +206,4 @@ const CorrectDetailScreen = ({ navigation }) => {
     )
 }
 
-export default CorrectDetailScreen;
+export default DetailScreen;
