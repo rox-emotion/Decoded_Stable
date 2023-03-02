@@ -3,18 +3,24 @@ import { Image, View, TouchableOpacity } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import styles from "./Header.style";
 
-const Header = ({hasMenu}) => {
+const Header = ({ hasMenu, hasBackButton }) => {
     const menu = hasMenu;
+    const button = hasBackButton;
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => { navigation.goBack() }}>
-                <Image
-                    source={require('../../assets/icons/back_arrow.png')}
-                    style={{ height: 38, width: 19 }}
+            {
+               button
+                    ? (<TouchableOpacity onPress={() => { navigation.goBack() }}>
+                        <Image
+                            source={require('../../assets/icons/back_arrow.png')}
+                            style={{ height: 38, width: 19 }}
 
-                />
-            </TouchableOpacity>
+                        />
+                    </TouchableOpacity>
+                    )
+                    : null
+            }
             {
                 menu
                     ? <TouchableOpacity onPress={() => { navigation.navigate('All') }}>

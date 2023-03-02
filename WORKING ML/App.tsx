@@ -8,8 +8,7 @@ import AllScreen from './screens/all/AllScreen.component';
 import AboutScreen from './screens/about/AboutScreen.component';
 import ScanScreen from './screens/scan/ScanScreen.component';
 import DetailScreen from './screens/detail/DetailScreen.component';
-import { loadFonts } from './Fonts';
-import { useEffect } from 'react';
+
 const Stack = createNativeStackNavigator();
 
 const navTheme = DefaultTheme;

@@ -11,7 +11,7 @@ const CorrectAboutScreen = () => {
     }
     return (
         <SafeAreaView >
-            <Header hasMenu={true} />
+            <Header hasMenu={true} hasBackButton={true}/>
             <View style={styles.container}>
             <ScrollView style={styles.scrollContainer}>
             <Image source={require('./../../assets/icons/decoded_logo.png')}

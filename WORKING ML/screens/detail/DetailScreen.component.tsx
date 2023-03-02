@@ -118,7 +118,7 @@ const DetailScreen = () => {
 
     return (
         <SafeAreaView>
-            <Header hasMenu={false} />
+            <Header hasMenu={false} hasBackButton={true}/>
             {
                 isScrolled
                     ? (

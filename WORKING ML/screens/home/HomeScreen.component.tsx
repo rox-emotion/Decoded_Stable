@@ -13,42 +13,68 @@ const HomeScreen = () => {
 
     useEffect(() => {
         const timer = setInterval(() => {
-            if(counter.current == 2){
+            if (counter.current == 2) {
                 setDone(true)
-                // navigation.navigate('scan')
                 clearInterval(timer)
             }
-            counter.current +=1
+            counter.current += 1
 
-            setImage(image => image+1)
+            setImage(image => image + 1)
         }, 1500)
 
         return (() => {
             clearInterval(timer)
         })
-    },[])
+    }, [])
+
+
+    // return (
+    //     <SafeAreaView style={styles.container}>
+    //         {
+    //             done
+    //             ? <>
+    //             <Image
+    //                 source={images[2]}
+    //                 style={{ alignSelf: 'center', width: 116, height:194}}
+
+    //             />
+    //             <TouchableOpacity onPress={() => {navigation.navigate("Scan")}}>
+    //                 <Text>Scan Portrait</Text>
+    //             </TouchableOpacity>
+    //             </>
+    //             : (
+    //                 <Image
+    //                 source={images[image]}
+    //                 style={{ alignSelf: 'center', width: image == 0 ? 58 : image == 1 ? 116 : 116, height: image == 0 ? 116 : image == 1 ? 59 : 194}}
+    //             />
+    //             )
+    //         }
+
+    //     </SafeAreaView>
+    // )
+
     return (
         <SafeAreaView style={styles.container}>
             {
                 done
-                ? <>
-                <Image
-                    source={images[2]}
-                    style={{ alignSelf: 'center', width: 116, height:194}}
-                    
-                />
-                <TouchableOpacity onPress={() => {navigation.navigate("Scan")}}>
-                    <Text>Scan Portrait</Text>
-                </TouchableOpacity>
-                </>
-                : (
-                    <Image
-                    source={images[image]}
-                    style={{ alignSelf: 'center', width: image == 0 ? 58 : image == 1 ? 116 : 116, height: image == 0 ? 116 : image == 1 ? 59 : 194}}
-                />
-                )
+                    ? <>
+                        <Image source={images[2]}
+                            style={{ width: 116, height: 194 }}
+                        />
+                        <TouchableOpacity onPress={() => { navigation.navigate("Scan") }}>
+                            <Text style={styles.text}>Scan Portrait</Text>
+                        </TouchableOpacity>
+                    </>
+                    : <><Image
+                        source={images[image]}
+                        style={{ alignSelf: 'center', width: image == 0 ? 58 : image == 1 ? 116 : 116, height: image == 0 ? 116 : image == 1 ? 59 : 194 }}
+                    />
+                        <TouchableOpacity onPress={() => { navigation.navigate("Scan") }}>
+                            <Text style={styles.textWhite}>Scan Portrait</Text>
+                        </TouchableOpacity>
+                    </>
+
             }
-                
         </SafeAreaView>
     )
 }

@@ -10,24 +10,36 @@ const SplashScreen = () => {
 
     const [showLogo, setShowLogo] = useState(false)
 
-    useEffect(() => {
-        const navigationTimer = setTimeout(() => {
-            navigation.navigate('Home')
-        }, 9000);
+    // useEffect(() => {
+    //     const navigationTimer = setTimeout(() => {
+    //         navigation.navigate('Home')
+    //     }, 9000);
 
-        return () => {clearTimeout(navigationTimer)}
+    //     return () => {clearTimeout(navigationTimer)}
 
-    }, [])
+    // }, [])
 
-    const images = [require('./../../assets/icons/splash/1.png'), require('./../../assets/icons/splash/2.png'), require('./../../assets/icons/splash/3.png'), require('./../../assets/icons/splash/4.png'), require('./../../assets/icons/splash/5.png'), require('./../../assets/icons/splash/6.png'), require('./../../assets/icons/splash/7.png'), require('./../../assets/icons/splash/8.png'), require('./../../assets/icons/splash/9.png')]
+
+    const images = [require('./../../assets/icons/splash/1.png'), require('./../../assets/icons/splash/2.png'), require('./../../assets/icons/splash/3.png'), require('./../../assets/icons/splash/4.png'), require('./../../assets/icons/splash/5.png'), require('./../../assets/icons/splash/6.png'), require('./../../assets/icons/splash/7.png'), require('./../../assets/icons/splash/8.png')]
     const [imageToUse, setImageToUse] = useState(0)
+    const [loading, setLoading] = useState(true);
+
     var counter = useRef(0)
+
+
+    const preloadImages = async () => {
+        const promises = images.map((image) => { Image.prefetch(image.toString()); console.error('preparing...') });
+        await Promise.all(promises);
+        setLoading(false);
+    };
+
+
     useEffect(() => {
-        //TESTING PURPOSES
-        // navigation.navigate('detail')
+        preloadImages()
         const timer = setInterval(() => {
             if (counter.current == 9) {
-                clearInterval(timer);
+                // clearInterval(timer);
+                setImageToUse(1)
             }
             setImageToUse(imageToUse => imageToUse + 1)
         }, 1000)
@@ -39,7 +51,14 @@ const SplashScreen = () => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Image style={styles.tree} source={images[imageToUse]} />
+            {
+                loading
+                    ? null
+                    : <Image style={styles.tree} source={images[imageToUse]} />
+
+            }
+
+
         </SafeAreaView>
     )
 }

@@ -16,7 +16,7 @@ const AllScreen = () => {
     //AICI O SA FIE UN FLATLIST CARE O SA RANDEZE UN <TouchableOpacity onPress={navigateToDetail(item.id)}><Image source={require()} style={...}</TouchableOpacity>
     return (
         <SafeAreaView>
-            <Header hasMenu={false}/>
+            <Header hasMenu={false} hasBackButton={true}/>
             <ScrollView ref={scrollRef} style={styles.container}>
                 <View style={styles.container}>
                     <View style={styles.pictureRow}>

@@ -11,6 +11,7 @@ import styles from './ScanScreen.styles';
 import { TouchableOpacity } from 'react-native';
 import '@tensorflow/tfjs-react-native/dist/platform_react_native'
 import { useNavigation } from '@react-navigation/native';
+import Header from '../../components/header/Header';
 
 
 const ScanScreen = () => {
@@ -139,6 +140,7 @@ const ScanScreen = () => {
         justifyContent: 'center',
       }}
     >
+      <Header hasMenu={false} hasBackButton={false}/>
       <Camera
         style={styles.camera}
         type={CameraType.back} ref={cameraRef} onCameraReady={() => setIsCameraReady(true)}>
