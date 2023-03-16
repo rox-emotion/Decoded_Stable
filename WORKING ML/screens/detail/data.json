@@ -1,0 +1,608 @@
+[
+    {
+        "id": 1,
+        "image": "require(./../../assets/images/001.png)",
+        "audio": "./../../assets/audio/001.ios.m4a",
+        "color": "#26346D"
+    },
+    {
+        "id": 2,
+        "image": "./../../assets/images/002.png",
+        "audio": "./../../assets/audio/002.ios.m4a",
+        "color": "#BF9C5C"
+    },
+    {
+        "id": 3,
+        "image": "./../../assets/images/003.png",
+        "audio": "./../../assets/audio/003.ios.m4a",
+        "color": "#67523A"
+    },
+    {
+        "id": 4,
+        "image": "./../../assets/images/004.png",
+        "audio": "./../../assets/audio/004.ios.m4a",
+        "color": "#516498"
+    },
+    {
+        "id": 5,
+        "image": "./../../assets/images/005.png",
+        "audio": "./../../assets/audio/005.ios.m4a",
+        "color": "#A28F7E"
+    },
+    {
+        "id": 6,
+        "image": "./../../assets/images/006.png",
+        "audio": "./../../assets/audio/006.ios.m4a",
+        "color": "#EA6A3C"
+    },
+    {
+        "id": 7,
+        "image": "./../../assets/images/007.png",
+        "audio": "./../../assets/audio/007.ios.m4a",
+        "color": "#758A32"
+    },
+    {
+        "id": 8,
+        "image": "./../../assets/images/008.png",
+        "audio": "./../../assets/audio/008.ios.m4a",
+        "color": "#CC1420"
+    },
+    {
+        "id": 9,
+        "image": "./../../assets/images/009.png",
+        "audio": "./../../assets/audio/009.ios.m4a",
+        "color": "#7D7E8A"
+    },
+    {
+        "id": 10,
+        "image": "./../../assets/images/010.png",
+        "audio": "./../../assets/audio/010.ios.m4a",
+        "color": "#2C4337"
+    },
+    {
+        "id": 11,
+        "image": "./../../assets/images/011.png",
+        "audio": "./../../assets/audio/011.ios.m4a",
+        "color": "#087CC1"
+    },
+    {
+        "id": 12,
+        "image": "./../../assets/images/012.png",
+        "audio": "./../../assets/audio/012.ios.m4a",
+        "color": "#195089"
+    },
+    {
+        "id": 13,
+        "image": "./../../assets/images/013.png",
+        "audio": "./../../assets/audio/013.ios.m4a",
+        "color": "#A43C51"
+    },
+    {
+        "id": 14,
+        "image": "./../../assets/images/014.png",
+        "audio": "./../../assets/audio/014.ios.m4a",
+        "color": "#AB386D"
+    },
+    {
+        "id": 15,
+        "image": "./../../assets/images/015.png",
+        "audio": "./../../assets/audio/015.ios.m4a",
+        "color": "#4E4D51"
+    },
+    {
+        "id": 16,
+        "image": "./../../assets/images/016.png",
+        "audio": "./../../assets/audio/016.ios.m4a",
+        "color": "#4E4D51"
+    },
+    {
+        "id": 17,
+        "image": "./../../assets/images/017.png",
+        "audio": "./../../assets/audio/017.ios.m4a",
+        "color": "#C17513"
+    },
+    {
+        "id": 18,
+        "image": "./../../assets/images/018.png",
+        "audio": "./../../assets/audio/018.ios.m4a",
+        "color": "#1F1F27"
+    },
+    {
+        "id": 19,
+        "image": "./../../assets/images/019.png",
+        "audio": "./../../assets/audio/019.ios.m4a",
+        "color": "#2C3D74"
+    },
+    {
+        "id": 20,
+        "image": "./../../assets/images/020.png",
+        "audio": "./../../assets/audio/020.ios.m4a",
+        "color": "#CB2C87"
+    },
+    {
+        "id": 21,
+        "image": "./../../assets/images/021.png",
+        "audio": "./../../assets/audio/021.ios.m4a",
+        "color": "#6D6C74"
+    },
+    {
+        "id": 22,
+        "image": "./../../assets/images/022.png",
+        "audio": "./../../assets/audio/022.ios.m4a",
+        "color": "#641124"
+    },
+    {
+        "id": 23,
+        "image": "./../../assets/images/023.png",
+        "audio": "./../../assets/audio/023.ios.m4a",
+        "color": "#353748"
+    },
+    {
+        "id": 24,
+        "image": "./../../assets/images/024.png",
+        "audio": "./../../assets/audio/024.ios.m4a",
+        "color": "#D41031"
+    },
+    {
+        "id": 25,
+        "image": "./../../assets/images/025.png",
+        "audio": "./../../assets/audio/025.ios.m4a",
+        "color": "#4C4395"
+    },
+    {
+        "id": 26,
+        "image": "./../../assets/images/026.png",
+        "audio": "./../../assets/audio/026.ios.m4a",
+        "color": "#02A2A9"
+    },
+    {
+        "id": 27,
+        "image": "./../../assets/images/027.png",
+        "audio": "./../../assets/audio/027.ios.m4a",
+        "color": "#E94E51"
+    },
+    {
+        "id": 28,
+        "image": "./../../assets/images/028.png",
+        "audio": "./../../assets/audio/028.ios.m4a",
+        "color": "#636062"
+    },
+    {
+        "id": 29,
+        "image": "./../../assets/images/029.png",
+        "audio": "./../../assets/audio/029.ios.m4a",
+        "color": "#2C282F"
+    },
+    {
+        "id": 30,
+        "image": "./../../assets/images/030.png",
+        "audio": "./../../assets/audio/030.ios.m4a",
+        "color": "#CE6116"
+    },
+    {
+        "id": 31,
+        "image": "./../../assets/images/031.png",
+        "audio": "./../../assets/audio/031.ios.m4a",
+        "color": "#DCAC09"
+    },
+    {
+        "id": 32,
+        "image": "./../../assets/images/032.png",
+        "audio": "./../../assets/audio/032.ios.m4a",
+        "color": "#96737D"
+    },
+    {
+        "id": 33,
+        "image": "./../../assets/images/033.png",
+        "audio": "./../../assets/audio/033.ios.m4a",
+        "color": "#BD9F5F"
+    },
+    {
+        "id": 34,
+        "image": "./../../assets/images/034.png",
+        "audio": "./../../assets/audio/034.ios.m4a",
+        "color": "#BD182E"
+    },
+    {
+        "id": 35,
+        "image": "./../../assets/images/035.png",
+        "audio": "./../../assets/audio/035.ios.m4a",
+        "color": "#2D2F58"
+    },
+    {
+        "id": 36,
+        "image": "./../../assets/images/036.png",
+        "audio": "./../../assets/audio/036.ios.m4a",
+        "color": "#7BA1D3"
+    },
+    {
+        "id": 37,
+        "image": "./../../assets/images/037.png",
+        "audio": "./../../assets/audio/037.ios.m4a",
+        "color": "#262632"
+    },
+    {
+        "id": 38,
+        "image": "./../../assets/images/038.png",
+        "audio": "./../../assets/audio/038.ios.m4a",
+        "color": "#606573"
+    },
+    {
+        "id": 39,
+        "image": "./../../assets/images/039.png",
+        "audio": "./../../assets/audio/039.ios.m4a",
+        "color": "#593A32"
+    },
+    {
+        "id": 40,
+        "image": "./../../assets/images/040.png",
+        "audio": "./../../assets/audio/040.ios.m4a",
+        "color": "#5A5763"
+    },
+    {
+        "id": 41,
+        "image": "./../../assets/images/041.png",
+        "audio": "./../../assets/audio/041.ios.m4a",
+        "color": "#4C6C9D"
+    },
+    {
+        "id": 42,
+        "image": "./../../assets/images/042.png",
+        "audio": "./../../assets/audio/042.ios.m4a",
+        "color": "#617227"
+    },
+    {
+        "id": 43,
+        "image": "./../../assets/images/043.png",
+        "audio": "./../../assets/audio/043.ios.m4a",
+        "color": "#00A493"
+    },
+    {
+        "id": 44,
+        "image": "./../../assets/images/044.png",
+        "audio": "./../../assets/audio/044.ios.m4a",
+        "color": "#981D77"
+    },
+    {
+        "id": 45,
+        "image": "./../../assets/images/045.png",
+        "audio": "./../../assets/audio/045.ios.m4a",
+        "color": "#28884C"
+    },
+    {
+        "id": 46,
+        "image": "./../../assets/images/046.png",
+        "audio": "./../../assets/audio/046.ios.m4a",
+        "color": "#E03020"
+    },
+    {
+        "id": 47,
+        "image": "./../../assets/images/047.png",
+        "audio": "./../../assets/audio/047.ios.m4a",
+        "color": "#58AE8D"
+    },
+    {
+        "id": 48,
+        "image": "./../../assets/images/048.png",
+        "audio": "./../../assets/audio/048.ios.m4a",
+        "color": "#7B3524"
+    },
+    {
+        "id": 49,
+        "image": "./../../assets/images/049.png",
+        "audio": "./../../assets/audio/049.ios.m4a",
+        "color": "#E77E4A"
+    },
+    {
+        "id": 50,
+        "image": "./../../assets/images/050.png",
+        "audio": "./../../assets/audio/050.ios.m4a",
+        "color": "#AC7F6D"
+    },
+    {
+        "id": 51,
+        "image": "./../../assets/images/051.png",
+        "audio": "./../../assets/audio/051.ios.m4a",
+        "color": "#974C98"
+    },
+    {
+        "id": 52,
+        "image": "./../../assets/images/052.png",
+        "audio": "./../../assets/audio/052.ios.m4a",
+        "color": "#CA3229"
+    },
+    {
+        "id": 53,
+        "image": "./../../assets/images/053.png",
+        "audio": "./../../assets/audio/053.ios.m4a",
+        "color": "#1C3F88"
+    },
+    {
+        "id": 54,
+        "image": "./../../assets/images/054.png",
+        "audio": "./../../assets/audio/054.ios.m4a",
+        "color": "#A2511D"
+    },
+    {
+        "id": 55,
+        "image": "./../../assets/images/055.png",
+        "audio": "./../../assets/audio/055.ios.m4a",
+        "color": "#585447"
+    },
+    {
+        "id": 56,
+        "image": "./../../assets/images/056.png",
+        "audio": "./../../assets/audio/056.ios.m4a",
+        "color": "#104796"
+    },
+    {
+        "id": 57,
+        "image": "./../../assets/images/057.png",
+        "audio": "./../../assets/audio/057.ios.m4a",
+        "color": "#A5541E"
+    },
+    {
+        "id": 58,
+        "image": "./../../assets/images/058.png",
+        "audio": "./../../assets/audio/058.ios.m4a",
+        "color": "#E72771"
+    },
+    {
+        "id": 59,
+        "image": "./../../assets/images/059.png",
+        "audio": "./../../assets/audio/059.ios.m4a",
+        "color": "#AAAE19"
+    },
+    {
+        "id": 60,
+        "image": "./../../assets/images/060.png",
+        "audio": "./../../assets/audio/060.ios.m4a",
+        "color": "#C69D3A"
+    },
+    {
+        "id": 61,
+        "image": "./../../assets/images/061.png",
+        "audio": "./../../assets/audio/061.ios.m4a",
+        "color": "#642327"
+    },
+    {
+        "id": 62,
+        "image": "./../../assets/images/062.png",
+        "audio": "./../../assets/audio/062.ios.m4a",
+        "color": "#00A385"
+    },
+    {
+        "id": 63,
+        "image": "./../../assets/images/063.png",
+        "audio": "./../../assets/audio/063.ios.m4a",
+        "color": "#688FBA"
+    },
+    {
+        "id": 64,
+        "image": "./../../assets/images/064.png",
+        "audio": "./../../assets/audio/064.ios.m4a",
+        "color": "#795E16"
+    },
+    {
+        "id": 65,
+        "image": "./../../assets/images/065.png",
+        "audio": "./../../assets/audio/065.ios.m4a",
+        "color": "#2C3564"
+    },
+    {
+        "id": 66,
+        "image": "./../../assets/images/066.png",
+        "audio": "./../../assets/audio/066.ios.m4a",
+        "color": "#CE3455"
+    },
+    {
+        "id": 67,
+        "image": "./../../assets/images/067.png",
+        "audio": "./../../assets/audio/067.ios.m4a",
+        "color": "#393741"
+    },
+    {
+        "id": 68,
+        "image": "./../../assets/images/068.png",
+        "audio": "./../../assets/audio/068.ios.m4a",
+        "color": "#4A4852"
+    },
+    {
+        "id": 69,
+        "image": "./../../assets/images/069.png",
+        "audio": "./../../assets/audio/069.ios.m4a",
+        "color": "#8E6B5A"
+    },
+    {
+        "id": 70,
+        "image": "./../../assets/images/070.png",
+        "audio": "./../../assets/audio/070.ios.m4a",
+        "color": "#4B508C"
+    },
+    {
+        "id": 71,
+        "image": "./../../assets/images/071.png",
+        "audio": "./../../assets/audio/071.ios.m4a",
+        "color": "#DA663F"
+    },
+    {
+        "id": 72,
+        "image": "./../../assets/images/072.png",
+        "audio": "./../../assets/audio/072.ios.m4a",
+        "color": "#B9514D"
+    },
+    {
+        "id": 73,
+        "image": "./../../assets/images/073.png",
+        "audio": "./../../assets/audio/073.ios.m4a",
+        "color": "#7F2A47"
+    },
+    {
+        "id": 74,
+        "image": "./../../assets/images/074.png",
+        "audio": "./../../assets/audio/074.ios.m4a",
+        "color": "#4F4B80"
+    },
+    {
+        "id": 75,
+        "image": "./../../assets/images/075.png",
+        "audio": "./../../assets/audio/075.ios.m4a",
+        "color": "#72472D"
+    },
+    {
+        "id": 76,
+        "image": "./../../assets/images/076.png",
+        "audio": "./../../assets/audio/076.ios.m4a",
+        "color": "#1F3D89"
+    },
+    {
+        "id": 77,
+        "image": "./../../assets/images/077.png",
+        "audio": "./../../assets/audio/077.ios.m4a",
+        "color": "#024660"
+    },
+    {
+        "id": 78,
+        "image": "./../../assets/images/078.png",
+        "audio": "./../../assets/audio/078.ios.m4a",
+        "color": "#613624"
+    },
+    {
+        "id": 79,
+        "image": "./../../assets/images/079.png",
+        "audio": "./../../assets/audio/079.ios.m4a",
+        "color": "#E83E68"
+    },
+    {
+        "id": 80,
+        "image": "./../../assets/images/080.png",
+        "audio": "./../../assets/audio/080.ios.m4a",
+        "color": "#B51E27"
+    },
+    {
+        "id": 81,
+        "image": "./../../assets/images/081.png",
+        "audio": "./../../assets/audio/081.ios.m4a",
+        "color": "#325C93"
+    },
+    {
+        "id": 82,
+        "image": "./../../assets/images/082.png",
+        "audio": "./../../assets/audio/082.ios.m4a",
+        "color": "#6E443A"
+    },
+    {
+        "id": 83,
+        "image": "./../../assets/images/083.png",
+        "audio": "./../../assets/audio/083.ios.m4a",
+        "color": "#C66258"
+    },
+    {
+        "id": 84,
+        "image": "./../../assets/images/084.png",
+        "audio": "./../../assets/audio/084.ios.m4a",
+        "color": "#7F615A"
+    },
+    {
+        "id": 85,
+        "image": "./../../assets/images/085.png",
+        "audio": "./../../assets/audio/085.ios.m4a",
+        "color": "#6994A5"
+    },
+    {
+        "id": 86,
+        "image": "./../../assets/images/086.png",
+        "audio": "./../../assets/audio/086.ios.m4a",
+        "color": "#D51119"
+    },
+    {
+        "id": 87,
+        "image": "./../../assets/images/087.png",
+        "audio": "./../../assets/audio/087.ios.m4a",
+        "color": "#353B56"
+    },
+    {
+        "id": 88,
+        "image": "./../../assets/images/088.png",
+        "audio": "./../../assets/audio/088.ios.m4a",
+        "color": "#857577"
+    },
+    {
+        "id": 89,
+        "image": "./../../assets/images/089.png",
+        "audio": "./../../assets/audio/089.ios.m4a",
+        "color": "#04839A"
+    },
+    {
+        "id": 90,
+        "image": "./../../assets/images/090.png",
+        "audio": "./../../assets/audio/090.ios.m4a",
+        "color": "#901917"
+    },
+    {
+        "id": 91,
+        "image": "./../../assets/images/091.png",
+        "audio": "./../../assets/audio/091.ios.m4a",
+        "color": "#6F2B18"
+    },
+    {
+        "id": 92,
+        "image": "./../../assets/images/092.png",
+        "audio": "./../../assets/audio/092.ios.m4a",
+        "color": "#CC6E2D"
+    },
+    {
+        "id": 93,
+        "image": "./../../assets/images/093.png",
+        "audio": "./../../assets/audio/093.ios.m4a",
+        "color": "#91AD3C"
+    },
+    {
+        "id": 94,
+        "image": "./../../assets/images/094.png",
+        "audio": "./../../assets/audio/094.ios.m4a",
+        "color": "#7F5137"
+    },
+    {
+        "id": 95,
+        "image": "./../../assets/images/095.png",
+        "audio": "./../../assets/audio/095.ios.m4a",
+        "color": "#E45815"
+    },
+    {
+        "id": 96,
+        "image": "./../../assets/images/096.png",
+        "audio": "./../../assets/audio/096.ios.m4a",
+        "color": "#535045"
+    },
+    {
+        "id": 97,
+        "image": "./../../assets/images/097.png",
+        "audio": "./../../assets/audio/097.ios.m4a",
+        "color": "#353237"
+    },
+    {
+        "id": 98,
+        "image": "./../../assets/images/098.png",
+        "audio": "./../../assets/audio/098.ios.m4a",
+        "color": "#9A6F42"
+    },
+    {
+        "id": 99,
+        "image": "./../../assets/images/099.png",
+        "audio": "./../../assets/audio/099.ios.m4a",
+        "color": "#2C3352"
+    },
+    {
+        "id": 100,
+        "image": "./../../assets/images/100.png",
+        "audio": "./../../assets/audio/100.ios.m4a",
+        "color": "#A73223"
+    },
+    {
+        "id": 101,
+        "image": "./../../assets/images/101.png",
+        "audio": "./../../assets/audio/101.ios.m4a",
+        "color": "#785C9D"
+    }
+]

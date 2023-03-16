@@ -8,11 +8,15 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import styles from "./DetailScreen.styles";
 import Header from "../../components/header/Header";
 import { useIsFocused } from '@react-navigation/native';
+import data from './data.json'
+import images from "./images";
+import FadedScrollView from 'rn-faded-scrollview';
 
-const DetailScreen = () => {
+const DetailScreen = ({ route }) => {
 
     const isFocused = useIsFocused();
-
+    const id = route.params.id
+    const allData = data
     const [sound, setSound] = useState();
     const [percetange, setPercentage] = useState(0)
     const [passed, setPassed] = useState(0)
@@ -75,7 +79,7 @@ const DetailScreen = () => {
         if (isFocused) {
             playSound();
         }
-        else{
+        else {
             sound.stopAsync();
         }
 
@@ -106,7 +110,7 @@ const DetailScreen = () => {
     const radius = 55;
     const strokeWidth = 20;
     const duration = 500;
-    const color = '#3FA535';
+    const color = allData[id].color;
     const inactiveColor = '#EBE9E4'
     const delay = 0;
     const max = 100;
@@ -118,17 +122,18 @@ const DetailScreen = () => {
 
     return (
         <SafeAreaView>
-            <Header hasMenu={false} hasBackButton={true}/>
+            <Header hasMenu={false} hasBackButton={true} />
             {
                 isScrolled
                     ? (
                         <View style={styles.container}>
-                            <Image source={require('./../../assets/icons/placeholder.png')} style={{ height: 400, width: 300, marginBottom: 23 }} />
+                            <Image source={images[id]}
+                                style={{ height: 400, width: 300, marginBottom: 23 }} />
                             <View style={{ justifyContent: 'space-evenly' }}>
 
-                                <Text style={styles.title}>Full Name</Text>
-                                <Text style={styles.title}>Artist and Writer</Text>
-                                <Text style={styles.title}>02_1994</Text>
+                                <Text style={[styles.title, { color: allData[id].color }]}>Full Name</Text>
+                                <Text style={[styles.title, { color: allData[id].color }]}>Artist and Writer</Text>
+                                <Text style={[styles.title, { color: allData[id].color }]}>02_1994</Text>
                                 <View style={styles.player}>
                                     <TouchableOpacity
                                         onPress={toggleSound}
@@ -142,8 +147,9 @@ const DetailScreen = () => {
 
                                                         : null
                                                 }
+                                                <TouchableOpacity>
                                                 <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
-
+                                                </TouchableOpacity>
                                             </G>
                                         </Svg>
                                     </TouchableOpacity>
@@ -164,7 +170,7 @@ const DetailScreen = () => {
                                 <TouchableOpacity
                                     onPress={toggleSound}
                                 >
-                                    <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
+                                    {/* <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
                                         <G rotation='-90' origin={`${halfCircle}, ${halfCircle}`}>
                                             <Circle cy='50%' cx='50%' stroke={inactiveColor} strokeWidth={strokeWidth} r={radius} fill='transparent' />
                                             {
@@ -176,10 +182,11 @@ const DetailScreen = () => {
                                             <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
 
                                         </G>
-                                    </Svg>
+                                    </Svg> */}
                                 </TouchableOpacity>
                             </View>
-                            <ScrollView style={{ height: '80%' }}>
+                            <FadedScrollView fadeSize={40} fadeColors={['#ffffff', '#ffffff00']}
+                                style={{ height: '80%' }}>
                                 <Text style={styles.smallText}>
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada arcu id arcu rutrum molestie. Donec suscipit vestibulum est sit amet imperdiet. Morbi non venenatis massa, a dictum sapien. Integer volutpat tempus interdum. In nec venenatis odio. Duis vitae ultrices tortor, in tempus nisl. Fusce vel urna finibus, vulputate ante eu, viverra sapien. Maecenas finibus, dolor quis maximus aliquet, quam orci auctor nunc, sed tincidunt leo nibh vitae lacus. Donec rutrum dolor ac aliquam gravida.
 
@@ -194,7 +201,7 @@ const DetailScreen = () => {
                                     <Image source={require('./../../assets/icons/up_arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
                                 </TouchableOpacity>
 
-                            </ScrollView>
+                            </FadedScrollView>
                         </View>
 
 

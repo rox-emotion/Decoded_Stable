@@ -12,7 +12,7 @@ import { TouchableOpacity } from 'react-native';
 import '@tensorflow/tfjs-react-native/dist/platform_react_native'
 import { useNavigation } from '@react-navigation/native';
 import Header from '../../components/header/Header';
-
+import { TextInput } from 'react-native';
 
 const ScanScreen = () => {
 
@@ -26,12 +26,18 @@ const ScanScreen = () => {
   const [isCameraReady, setIsCameraReady] = useState(false);
   const [picsTaken, setPicsTaken] = useState(0);
   const navigation = useNavigation()
+  const [det, setDet] = useState(0);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigation.navigate("Detail")
-    }, 3000)
-  }, [])
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     navigation.navigate("Detail")
+  //   }, 3000)
+  // }, [])
+
+  const moveOver = () => {
+    navigation.navigate("Detail", {id: det})
+  }
 
   // useEffect(() => {
   //   askForPermissions();
@@ -140,7 +146,7 @@ const ScanScreen = () => {
         justifyContent: 'center',
       }}
     >
-      <Header hasMenu={false} hasBackButton={false}/>
+      <Header hasMenu={false} hasBackButton={false} />
       <Camera
         style={styles.camera}
         type={CameraType.back} ref={cameraRef} onCameraReady={() => setIsCameraReady(true)}>
@@ -150,9 +156,15 @@ const ScanScreen = () => {
         source={{ uri: imageURI }}
         style={{ width: 200, height: 200 }}
       />
-      {/* <TouchableOpacity onPress={() => { navigation.navigate('detail') }}>
-        <Text style={{ marginTop: 100, fontSize: 46 }}>Move over automatically</Text>
-      </TouchableOpacity> */}
+      <TextInput
+        style={{ backgroundColor: 'red', width: 100, height: 50 }}
+        onChangeText={(value) => {setDet(value)}}
+        value={det}
+        keyboardType="numeric"
+      />
+      <TouchableOpacity onPress={(moveOver)}>
+        <Text>Move over</Text>
+      </TouchableOpacity>
       {result !== '' && <Text>{result}</Text>}
     </View>
   );
