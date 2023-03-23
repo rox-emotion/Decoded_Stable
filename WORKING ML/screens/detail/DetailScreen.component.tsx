@@ -16,6 +16,7 @@ const DetailScreen = ({ route }) => {
 
     const isFocused = useIsFocused();
     const id = route.params.id
+    console.error(id)
     const allData = data
     const [sound, setSound] = useState();
     const [percetange, setPercentage] = useState(0)
@@ -170,7 +171,7 @@ const DetailScreen = ({ route }) => {
                                 <TouchableOpacity
                                     onPress={toggleSound}
                                 >
-                                    {/* <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
+                                    <Svg width={radius * 2} height={radius * 2} viewBox={`0 0 ${halfCircle * 2} ${halfCircle * 2}`}>
                                         <G rotation='-90' origin={`${halfCircle}, ${halfCircle}`}>
                                             <Circle cy='50%' cx='50%' stroke={inactiveColor} strokeWidth={strokeWidth} r={radius} fill='transparent' />
                                             {
@@ -182,7 +183,7 @@ const DetailScreen = ({ route }) => {
                                             <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
 
                                         </G>
-                                    </Svg> */}
+                                    </Svg>
                                 </TouchableOpacity>
                             </View>
                             <FadedScrollView fadeSize={40} fadeColors={['#ffffff', '#ffffff00']}

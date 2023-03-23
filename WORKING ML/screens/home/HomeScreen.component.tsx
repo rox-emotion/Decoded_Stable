@@ -5,6 +5,8 @@ import { SafeAreaView, View, Text, TouchableOpacity, Image } from 'react-native'
 import styles
     from "./HomeScreen.styles";
 const HomeScreen = () => {
+    console.error("HOME")
+
     const navigation = useNavigation()
     const images = [require('./../../assets/icons/splash/2.1.png'), require('./../../assets/icons/splash/2.2.png'), require('./../../assets/icons/splash/2.3.png')]
     const [image, setImage] = useState(0);

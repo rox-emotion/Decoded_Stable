@@ -11,6 +11,8 @@ const SplashScreen = () => {
         const navigationTimer = setTimeout(() => {
             navigation.navigate('Scan')
         }, 1000);
+        // console.error('AICI')
+        // navigation.navigate('Scan')
 
         return () => { clearTimeout(navigationTimer) }
 
@@ -39,6 +41,7 @@ const SplashScreen = () => {
         <SafeAreaView style={styles.container}>
             <Image style={styles.tree} source={images[imageToUse]} />
         </SafeAreaView>
+       
     )
 }
 
