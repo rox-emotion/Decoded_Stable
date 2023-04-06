@@ -23,10 +23,11 @@ const CorrectAboutScreen = () => {
                     <Text style={[styles.title, { marginBottom: 12 }]}>Marcus Lyon</Text>
 
 
-                    <Text style={styles.smallText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada arcu id arcu rutrum molestie. Donec suscipit vestibulum est sit amet imperdiet. Morbi non venenatis massa, a dictum sapien. Integer volutpat tempus interdum. In nec venenatis odio. Duis vitae ultrices tortor, in tempus nisl. Fusce vel urna finibus, vulputate ante eu, viverra sapien. Maecenas finibus, dolor quis maximus aliquet, quam orci auctor nunc, sed tincidunt leo nibh vitae lacus. Donec rutrum dolor ac aliquam gravida.
-
-                        Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.</Text>
-
+                    <Text style={styles.smallText}>
+                        De.Coded is a research-based exploration of the human capital of Silicon Valley. The four-year project was built on the foundation of a year-long nomination process, where a diverse group of local leaders nominated individuals from their own communities who are making significant contributions to the region and represent the very best of service to society. The final 101 nominees frame many of the most important stories of this remarkable valley. However, they represent only a fraction of the Bay area’s exceptional residents.
+                        The project maps these remarkable people though photographic portraits, oral histories and ancestral DNA mapping to create a deeper understanding of the peninsula and beyond. The Human Atlas project holds a mirror up to society and encourages audiences to question their own roles and responsibilities to their communities, cities, and fellow human beings.
+                        The work is available as a book, a museum exhibition and in multiple digital formats.
+                    </Text>
                     <TouchableOpacity style={{ marginTop: 13, marginBottom: 40 }}>
                         <Text>Buy the Book → </Text>
                     </TouchableOpacity>
@@ -34,10 +35,11 @@ const CorrectAboutScreen = () => {
                     <Text style={{ alignSelf: 'center', fontSize: 24, marginBottom: 21 }}>Human Atlas Overview</Text>
 
 
-                    <Text style={styles.smallText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada arcu id arcu rutrum molestie. Donec suscipit vestibulum est sit amet imperdiet. Morbi non venenatis massa, a dictum sapien. Integer volutpat tempus interdum. In nec venenatis odio. Duis vitae ultrices tortor, in tempus nisl. Fusce vel urna finibus, vulputate ante eu, viverra sapien. Maecenas finibus, dolor quis maximus aliquet, quam orci auctor nunc, sed tincidunt leo nibh vitae lacus. Donec rutrum dolor ac aliquam gravida.
-
-                        Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.</Text>
-
+                    <Text style={styles.smallText}>
+                        Marcus Lyon is a British artist, who creates immersive, multi-layered, research-based Human Atlases that explore groups of extraordinary individuals through photographic portraits, oral histories, and ancestral DNA mapping.
+                        In the early 90’s he founded the Glassworks, a multidisciplinary gallery & production house for commissioned and original art. As a portrait artist he has photographed a diverse range of from Queen Elizabeth II to homeless street children and Prime Ministers to global social change agents. He has created extensive bodies of work around dance, disability sport, and development. The early 21st century saw his work move beyond traditional forms as he began to incorporate sound & science into his practice.
+                        Outside the art world, Lyon is a determined social entrepreneur & an active public speaker. He has served on the boards of the climate change focused Future Stewards Foundation, the art institution Somerset House, is on the Ally Council of Black Leaders Detroit and is a TED speaker.
+                    </Text>
                     <TouchableOpacity style={{ marginTop: 13, marginBottom: 40 }}>
                         <Text>Visit the Human Atlas Website → </Text>
                     </TouchableOpacity>
@@ -47,10 +49,11 @@ const CorrectAboutScreen = () => {
                     <Text style={{ alignSelf: 'center' }}>Human Atlas Founder</Text>
                     <Text style={{ alignSelf: 'center' }}>08_1965</Text>
 
-                    <Text style={styles.smallText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada arcu id arcu rutrum molestie. Donec suscipit vestibulum est sit amet imperdiet. Morbi non venenatis massa, a dictum sapien. Integer volutpat tempus interdum. In nec venenatis odio. Duis vitae ultrices tortor, in tempus nisl. Fusce vel urna finibus, vulputate ante eu, viverra sapien. Maecenas finibus, dolor quis maximus aliquet, quam orci auctor nunc, sed tincidunt leo nibh vitae lacus. Donec rutrum dolor ac aliquam gravida.
-
-                        Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.</Text>
-
+                    <Text style={styles.smallText}>
+                        De.Coded is a research-based exploration of the human capital of Silicon Valley. The four-year project was built on the foundation of a year-long nomination process, where a diverse group of local leaders nominated individuals from their own communities who are making significant contributions to the region and represent the very best of service to society. The final 101 nominees frame many of the most important stories of this remarkable valley. However, they represent only a fraction of the Bay area’s exceptional residents.
+                        The project maps these remarkable people though photographic portraits, oral histories and ancestral DNA mapping to create a deeper understanding of the peninsula and beyond. The Human Atlas project holds a mirror up to society and encourages audiences to question their own roles and responsibilities to their communities, cities, and fellow human beings.
+                        The work is available as a book, a museum exhibition and in multiple digital formats.
+                    </Text>
                     {/* <TouchableOpacity onPress={onPressTouch}>
                         <Image source={require('./../../assets/icons/up_arrow.png')} style={{ height: 50, width: 50, alignSelf: 'center' }} />
                     </TouchableOpacity> */}
