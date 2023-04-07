@@ -57,17 +57,12 @@ const ScanScreen = () => {
   const [isCameraReady, setIsCameraReady] = useState(true);
   const [picsTaken, setPicsTaken] = useState(0);
   const navigation = useNavigation()
-  const [det, setDet] = useState(0);
 
   useEffect(() => {
     askForPermissions()
     loadTF()
     takePicture()
   }, [])
-
-  const moveOver = () => {
-    navigation.navigate("Detail", { id: det })
-  }
 
   const loadTF = async () => {
     await tf.ready();
@@ -182,11 +177,14 @@ const ScanScreen = () => {
       const predictionMe = await model.predict(processedImg)
       console.error('gata prezicerea')
       console.log("The prediction is: " + predictionMe)
-      const predictedClassIndex = predictionMe.argMax(-1).dataSync()[0];
+      let predictedClassIndex = predictionMe.argMax(-1).dataSync()[0];
       // const finalImage = predictedClassIndex > 99 ? predictedClassIndex : predictedClassIndex > 9 ? '0' + predictedClassIndex : '00' + predictedClassIndex
       // console.error(finalImage)
 
-
+      console.log(predictedClassIndex)
+      if(predictedClassIndex == 1 || predictedClassIndex == 1){
+        predictedClassIndex = 4
+      }
       navigation.navigate("Detail", {id: predictedClassIndex})
 
     }
@@ -207,35 +205,27 @@ const ScanScreen = () => {
         justifyContent: 'center',
       }}
     >
-      <Header hasMenu={false} hasBackButton={false} />
+      {/* <Header hasMenu={false} hasBackButton={false} /> */}
+      <TouchableOpacity style={{zIndex:1}} onPress={() => {navigation.navigate('Debug')}}>
+        <Text style={{fontSize:28, color: 'red'}}>Debug</Text>
+      </TouchableOpacity>
       <Camera
         style={styles.camera}
         type={CameraType.back} ref={cameraRef}
       >
       </Camera>
 
-      <Image
+      {/* <Image
         source={{ uri: imageURI }}
         style={{ width: 200, height: 200 }}
-      />
-      <TextInput
-        style={{ backgroundColor: 'red', width: 100, height: 50 }}
-        onChangeText={(value) => { setDet(value) }}
-        value={det}
-        keyboardType="numeric"
-      />
-      <TouchableOpacity onPress={(moveOver)}>
-        <Text>Move over</Text>
-      </TouchableOpacity>
+      /> */}
+  
+      
+  
       {result !== '' && <Text>{result}</Text>}
     </View>
   );
 
-  return (
-    <View>
-      <Text>buna</Text>
-    </View>
-  )
 
 };
 

@@ -8,6 +8,13 @@ import AllScreen from './screens/all/AllScreen.component';
 import AboutScreen from './screens/about/AboutScreen.component';
 import ScanScreen from './screens/scan/ScanScreen.component';
 import DetailScreen from './screens/detail/DetailScreen.component';
+import DebugScreen from './screens/debug/DebugScreen.component';
+import * as Font from 'expo-font';
+import { useEffect } from 'react';
+
+// async function loadFonts() {
+//   await Font.loadAsync(customFonts);
+// }
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +22,10 @@ const navTheme = DefaultTheme;
 navTheme.colors.background = '#FFFFFF';
 
 const App = () => {
+
+  // useEffect(() => {
+  //   loadFonts();
+  // }, []);
 
   return (
     <NavigationContainer theme={navTheme}>
@@ -27,6 +38,7 @@ const App = () => {
         <Stack.Screen name="Detail" component={DetailScreen} />
         <Stack.Screen name="All" component={AllScreen} />
         <Stack.Screen name="About" component={AboutScreen} />
+        <Stack.Screen name="Debug" component={DebugScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

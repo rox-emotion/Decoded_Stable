@@ -11,6 +11,16 @@ import styles from "./DetailScreen.styles";
 import data from './data.json'
 import images from "./images";
 import { ScrollView } from "react-native-gesture-handler";
+import * as Font from 'expo-font';
+import { useCustomFonts } from './../fonts';
+
+// async function loadFonts() {
+//     await Font.loadAsync({
+//       'CalifornianFB-Bold': require('../../assets/fonts/CalifornianFB-Bold.ttf'),
+//     });
+//   }
+
+//   loadFonts();
 
 
 const DetailScreenClean = ({ route }) => {
@@ -24,6 +34,7 @@ const DetailScreenClean = ({ route }) => {
     const [isPaused, setIsPaused] = useState(false);
     const [isScrolled, setIsScrolled] = useState(true)
     const text = allData[id].transcript
+    const [fontsLoaded] = useCustomFonts();
 
     useEffect(() => {
         if (Platform.OS === 'ios') {
@@ -119,6 +130,7 @@ const DetailScreenClean = ({ route }) => {
     const strokeDashoffset = circleCircumference - (circleCircumference * percetange) / 100;
 
 
+
     return (
         <SafeAreaView>
             <Header hasMenu={false} hasBackButton={true} />
@@ -130,7 +142,7 @@ const DetailScreenClean = ({ route }) => {
                                 style={{ height: 400, width: 300, marginBottom: 23 }} />
                             <View style={{ justifyContent: 'space-evenly' }}>
 
-                                <Text style={[styles.title, { color: allData[id].color }]}>Full Name</Text>
+                                <Text style={[styles.name, { color: allData[id].color }]}>Full Name</Text>
                                 <Text style={[styles.title, { color: allData[id].color }]}>Artist and Writer</Text>
                                 <Text style={[styles.title, { color: allData[id].color }]}>02_1994</Text>
                                 <View style={styles.player}>
@@ -146,9 +158,8 @@ const DetailScreenClean = ({ route }) => {
 
                                                         : null
                                                 }
-                                                <TouchableOpacity>
-                                                    <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
-                                                </TouchableOpacity>
+                                                <AnimatedCircle ref={circleRef} cy='50%' cx='50%' stroke={color} strokeWidth={strokeWidth} r={radius} fill='transparent' strokeDasharray={circleCircumference} strokeDashoffset={strokeDashoffset} />
+
                                             </G>
                                         </Svg>
                                     </TouchableOpacity>
@@ -188,10 +199,6 @@ const DetailScreenClean = ({ route }) => {
                             <ScrollView
                                 style={{ height: '80%' }}>
                                 <Text style={styles.smallText}>
-                                    {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit. In malesuada arcu id arcu rutrum molestie. Donec suscipit vestibulum est sit amet imperdiet. Morbi non venenatis massa, a dictum sapien. Integer volutpat tempus interdum. In nec venenatis odio. Duis vitae ultrices tortor, in tempus nisl. Fusce vel urna finibus, vulputate ante eu, viverra sapien. Maecenas finibus, dolor quis maximus aliquet, quam orci auctor nunc, sed tincidunt leo nibh vitae lacus. Donec rutrum dolor ac aliquam gravida.
-
-                                    Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl.
-                                    Aenean vitae mi quis neque ullamcorper semper id non sapien. Pellentesque sagittis lobortis viverra. Vestibulum sagittis eget metus non elementum. In sit amet turpis justo. Nulla dignissim urna eget molestie sagittis. Fusce feugiat purus sed urna dignissim aliquam. Ut dapibus aliquam sollicitudin. Aliquam vitae est commodo, tincidunt ipsum in, rutrum leo. Pellentesque varius libero et fermentum condimentum. Proin consequat, sem a auctor congue, sapien sem commodo nisi, ac euismod dui odio a diam. Vivamus ut consectetur arcu, non vestibulum odio. Aenean ultricies dolor et porta dictum. Maecenas feugiat, turpis ut consectetur euismod, urna magna suscipit felis, sagittis aliquet tellus turpis in nisi. Praesent malesuada id lectus eu sollicitudin. Cras ac purus vitae sapien porta dapibus in vehicula nisl. */}
                                     {text}
                                 </Text>
 

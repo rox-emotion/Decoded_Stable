@@ -10,21 +10,23 @@ import images from './../detail/images'
 const AllScreen = () => {
     const scrollRef = useRef();
     const navigation = useNavigation()
-    const navigateToDetail = () => {
-        navigation.navigate('Detail')
+    const navigateToDetail = (pic) => {
+        console.log(pic)
+        navigation.navigate("Detail", { id: pic })
     }
 
     const [images, setImages] = useState(Array.from({ length: 100 }, (_, i) => `00${i + 1}`.slice(-3)));
 
     const renderItem = ({ item, index }) => {
-        console.log(index)
+        // console.log(index)
         return (
             <View>
-                <Image style={{height:94, width:74, margin:6}} source={images[index+2]} />
+                <TouchableOpacity onPress={() => {navigateToDetail(index)}}>
+                <Image style={{ height: 94, width: 74, margin: 6 }} source={images[index +2]}/>
+                </TouchableOpacity>
             </View>
         );
     };
-    //AICI O SA FIE UN FLATLIST CARE O SA RANDEZE UN <TouchableOpacity onPress={navigateToDetail(item.id)}><Image source={require()} style={...}</TouchableOpacity>
     return (
         <SafeAreaView>
             <Header hasMenu={false} hasBackButton={true} />
@@ -35,56 +37,6 @@ const AllScreen = () => {
                     keyExtractor={item => item}
                     numColumns={4}
                 />
-                {/* <View style={styles.pictureRow}>
-                    <TouchableOpacity onPress={navigateToDetail}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </TouchableOpacity>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}} />
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </View>
-                    <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </View>
-                    <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </View>
-                    <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </View>
-                    <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </View>
-                    <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </View>
-                    <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </View>
-                    <View style={styles.pictureRow}>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    <Image source={require('./../../assets/icons/placeholder.png')} style={{height:94, width:74, margin:6}}/>
-                    </View> */}
             </View>
         </SafeAreaView>
     )
